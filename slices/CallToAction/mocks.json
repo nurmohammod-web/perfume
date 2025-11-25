@@ -1,0 +1,52 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"eyebrow": {
+				"__TYPE__": "FieldContent",
+				"value": "probably",
+				"type": "Text"
+			},
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Hello"
+						}
+					}
+				]
+			},
+			"body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Occaecat culpa aliqua fugiat non labore non irure veniam excepteur elit irure. Velit sunt sunt nostrud commodo sint non."
+						}
+					}
+				]
+			},
+			"button": {
+				"__TYPE__": "RepeatableContent",
+				"type": "Link",
+				"value": [
+					{
+						"__TYPE__": "LinkContent",
+						"key": "89a89278-548d-47c1-9abb-520831e1a5e8",
+						"value": {
+							"__TYPE__": "ExternalLink",
+							"url": "http://google.com",
+							"text": "if",
+							"variant": "Primary"
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]
