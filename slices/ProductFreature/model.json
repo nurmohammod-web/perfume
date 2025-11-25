@@ -1,0 +1,65 @@
+{
+  "id": "product_freature",
+  "type": "SharedSlice",
+  "name": "ProductFreature",
+  "description": "ProductFreature",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading2"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em"
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Feature Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "fragance": {
+          "type": "Link",
+          "config": {
+            "label": "Fragance",
+            "select": "document",
+            "repeat": false,
+            "customtypes": [
+              {
+                "id": "fragrance",
+                "fields": [
+                  "title",
+                  "bottle_image",
+                  "description",
+                  "price",
+                  "scent_profile"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

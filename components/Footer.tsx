@@ -71,7 +71,7 @@ const NavGroup = ({ title, children }: NavGroupProps) => (
   <nav aria-labelledby={`${title.toLowerCase()}-heading`}>
     <h3
       id={`${title.toLowerCase()}-heading`}
-      className="mb-6 text-xl font-medium"
+      className="mb-6 text-xl font-medium text-white"
     >
       {title}
     </h3>
@@ -89,7 +89,7 @@ type NavLinkProps = {
 const NavLink = ({ href, children }: NavLinkProps) => {
   return (
     <li>
-      <Link href={href} className="hover:text-gray-300">
+      <Link href={href} className="text-white hover:text-gray-300">
         {children}
       </Link>
     </li>

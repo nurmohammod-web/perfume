@@ -87,6 +87,74 @@ interface FragranceDocumentData {
   title: prismic.RichTextField;
 
   /**
+   * Bottle Image field in *Fragrance*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fragrance.bottle_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  bottle_image: prismic.ImageField<never>;
+
+  /**
+   * Feature Image field in *Fragrance*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fragrance.feature_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  feature_image: prismic.ImageField<never>;
+
+  /**
+   * Description field in *Fragrance*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fragrance.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Price field in *Fragrance*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: (In centes)
+   * - **API ID Path**: fragrance.price
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  price: prismic.NumberField;
+
+  /**
+   * Scent Profile field in *Fragrance*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: spicy
+   * - **API ID Path**: fragrance.scent_profile
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/select
+   */
+  scent_profile: prismic.SelectField<"spicy" | "woody" | "fresh", "filled">;
+
+  /**
+   * Mood field in *Fragrance*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: bold
+   * - **API ID Path**: fragrance.mood
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/select
+   */
+  mood: prismic.SelectField<"bold" | "grounded" | "refreshing", "filled">;
+
+  /**
    * Slice Zone field in *Fragrance*
    *
    * - **Field Type**: Slice Zone
@@ -96,28 +164,6 @@ interface FragranceDocumentData {
    * - **Documentation**: https://prismic.io/docs/slices
    */
   slices: prismic.SliceZone<FragranceDocumentDataSlicesSlice> /**
-   * Meta Title field in *Fragrance*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: fragrance.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */;
-  meta_title: prismic.KeyTextField;
-
-  /**
-   * Meta Description field in *Fragrance*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: fragrance.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  meta_description: prismic.KeyTextField;
-
-  /**
    * Meta Image field in *Fragrance*
    *
    * - **Field Type**: Image
@@ -125,7 +171,7 @@ interface FragranceDocumentData {
    * - **API ID Path**: fragrance.meta_image
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/fields/image
-   */
+   */;
   meta_image: prismic.ImageField<never>;
 }
 
@@ -145,7 +191,11 @@ export type FragranceDocument<Lang extends string = string> =
     Lang
   >;
 
-type HomePageDocumentDataSlicesSlice = ScrollTextSlice | HeroSlice;
+type HomePageDocumentDataSlicesSlice =
+  | FragranceListSlice
+  | ProductFreatureSlice
+  | ScrollTextSlice
+  | HeroSlice;
 
 /**
  * Content for Home Page documents
@@ -211,6 +261,113 @@ export type HomePageDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes = FragranceDocument | HomePageDocument;
+
+/**
+ * Item in *FragranceList → Default → Primary → Fragrances*
+ */
+export interface FragranceListSliceDefaultPrimaryFragrancesItem {
+  /**
+   * Fragance field in *FragranceList → Default → Primary → Fragrances*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fragrance_list.default.primary.fragrances[].fragance
+   * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+   */
+  fragance: ContentRelationshipFieldWithData<
+    [
+      {
+        id: "fragrance";
+        fields: [
+          "title",
+          "bottle_image",
+          "feature_image",
+          "description",
+          "price",
+          "scent_profile",
+          "mood",
+        ];
+      },
+    ]
+  >;
+}
+
+/**
+ * Primary content in *FragranceList → Default → Primary*
+ */
+export interface FragranceListSliceDefaultPrimary {
+  /**
+   * EyeBrow field in *FragranceList → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fragrance_list.default.primary.eyebrow
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  eyebrow: prismic.KeyTextField;
+
+  /**
+   * Heading field in *FragranceList → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fragrance_list.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * Body field in *FragranceList → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fragrance_list.default.primary.body
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Fragrances field in *FragranceList → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fragrance_list.default.primary.fragrances[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  fragrances: prismic.GroupField<
+    Simplify<FragranceListSliceDefaultPrimaryFragrancesItem>
+  >;
+}
+
+/**
+ * Default variation for FragranceList Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FragranceListSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<FragranceListSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *FragranceList*
+ */
+type FragranceListSliceVariation = FragranceListSliceDefault;
+
+/**
+ * FragranceList Shared Slice
+ *
+ * - **API ID**: `fragrance_list`
+ * - **Description**: FragranceList
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FragranceListSlice = prismic.SharedSlice<
+  "fragrance_list",
+  FragranceListSliceVariation
+>;
 
 /**
  * Primary content in *Hero → Default → Primary*
@@ -291,6 +448,94 @@ type HeroSliceVariation = HeroSliceDefault;
  * - **Documentation**: https://prismic.io/docs/slices
  */
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
+
+/**
+ * Primary content in *ProductFreature → Default → Primary*
+ */
+export interface ProductFreatureSliceDefaultPrimary {
+  /**
+   * Heading field in *ProductFreature → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_freature.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * Description field in *ProductFreature → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_freature.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Feature Image field in *ProductFreature → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_freature.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Fragance field in *ProductFreature → Default → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_freature.default.primary.fragance
+   * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+   */
+  fragance: ContentRelationshipFieldWithData<
+    [
+      {
+        id: "fragrance";
+        fields: [
+          "title",
+          "bottle_image",
+          "description",
+          "price",
+          "scent_profile",
+        ];
+      },
+    ]
+  >;
+}
+
+/**
+ * Default variation for ProductFreature Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ProductFreatureSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ProductFreatureSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ProductFreature*
+ */
+type ProductFreatureSliceVariation = ProductFreatureSliceDefault;
+
+/**
+ * ProductFreature Shared Slice
+ *
+ * - **API ID**: `product_freature`
+ * - **Description**: ProductFreature
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ProductFreatureSlice = prismic.SharedSlice<
+  "product_freature",
+  ProductFreatureSliceVariation
+>;
 
 /**
  * Primary content in *ScrollText → Default → Primary*
@@ -375,10 +620,19 @@ declare module "@prismicio/client" {
       HomePageDocumentData,
       HomePageDocumentDataSlicesSlice,
       AllDocumentTypes,
+      FragranceListSlice,
+      FragranceListSliceDefaultPrimaryFragrancesItem,
+      FragranceListSliceDefaultPrimary,
+      FragranceListSliceVariation,
+      FragranceListSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      ProductFreatureSlice,
+      ProductFreatureSliceDefaultPrimary,
+      ProductFreatureSliceVariation,
+      ProductFreatureSliceDefault,
       ScrollTextSlice,
       ScrollTextSliceDefaultPrimary,
       ScrollTextSliceVariation,

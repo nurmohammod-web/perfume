@@ -21,6 +21,56 @@
           "single": "heading1"
         }
       },
+      "bottle_image": {
+        "type": "Image",
+        "config": {
+          "label": "Bottle Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "feature_image": {
+        "type": "Image",
+        "config": {
+          "label": "Feature Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Description",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,strong,em"
+        }
+      },
+      "price": {
+        "type": "Number",
+        "config": {
+          "label": "Price",
+          "placeholder": "(In centes)"
+        }
+      },
+      "scent_profile": {
+        "type": "Select",
+        "config": {
+          "label": "Scent Profile",
+          "placeholder": "",
+          "options": ["spicy", "woody", "fresh"],
+          "default_value": "spicy"
+        }
+      },
+      "mood": {
+        "type": "Select",
+        "config": {
+          "label": "Mood",
+          "placeholder": "",
+          "options": ["bold", "grounded", "refreshing"],
+          "default_value": "bold"
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
@@ -30,20 +80,6 @@
       }
     },
     "SEO & Metadata": {
-      "meta_title": {
-        "config": {
-          "label": "Meta Title",
-          "placeholder": "A title of the page used for social media and search engines"
-        },
-        "type": "Text"
-      },
-      "meta_description": {
-        "config": {
-          "label": "Meta Description",
-          "placeholder": "A brief summary of the page"
-        },
-        "type": "Text"
-      },
       "meta_image": {
         "config": {
           "constraint": {

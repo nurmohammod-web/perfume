@@ -3,6 +3,8 @@
 import dynamic from "next/dynamic";
 
 export const components = {
+  fragrance_list: dynamic(() => import("./FragranceList")),
   hero: dynamic(() => import("./Hero")),
+  product_freature: dynamic(() => import("./ProductFreature")),
   scroll_text: dynamic(() => import("./ScrollText")),
 };

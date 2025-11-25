@@ -1,10 +1,11 @@
 import clsx from "clsx";
-import {
-  TransitionLink,
-  TransitionLinkProps,
-} from "@/components/TransitionLink";
+// import {
+//   TransitionLink,
+//   TransitionLinkProps,
+// } from "@/components/TransitionLink";
+import { PrismicNextLink, PrismicNextLinkProps } from "@prismicio/next";
 
-export type ButtonLinkProps = TransitionLinkProps & {
+export type ButtonLinkProps = PrismicNextLinkProps & {
   variant?: "Primary" | "Secondary";
 };
 
@@ -14,7 +15,7 @@ export const ButtonLink = ({
   ...restProps
 }: ButtonLinkProps) => {
   return (
-    <TransitionLink
+    <PrismicNextLink
       className={clsx(
         "inline-flex items-center justify-center px-12 py-4 text-center font-extrabold tracking-wider uppercase transition-colors duration-300",
         variant === "Secondary"
