@@ -4,11 +4,13 @@ import { asImageSrc, asText } from "@prismicio/client";
 import { PrismicRichText, PrismicText, SliceZone } from "@prismicio/react";
 
 import { createClient } from "@/prismicio";
-import { components } from "@/slices";
+// import { components } from "@/slices";
 import { Bounded } from "@/components/Bounded";
 import { PrismicNextImage } from "@prismicio/next";
 import { FragranceAttributes } from "@/components/FragranceAttributes";
 import { formatPrice } from "@/utils/formatters";
+import { HiStar } from "react-icons/hi2";
+import { OtherFragrances } from "@/components/OtherFragrances";
 
 type Params = { uid: string };
 
@@ -16,9 +18,10 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   const { uid } = await params;
   const client = createClient();
   const page = await client.getByUID("fragrance", uid).catch(() => notFound());
+  const settings = await client.getSingle("setting");
 
   return (
-    <Bounded className="py-10">
+    <Bounded className="mt-20 py-10">
       <div className="grid grid-cols-1 items-center gap-10 pb-10 lg:grid-cols-2">
         <div className="relative mb-14 flex justify-center pb-10">
           <PrismicNextImage
@@ -60,7 +63,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
               Add to Bag
             </button>
 
-            {/* <div className="flex items-center gap-4 border-t border-neutral-700 pt-6">
+            <div className="flex items-center gap-4 border-t border-neutral-700 pt-6">
               <a href="#" className="hover:text-neutral-300">
                 763 total reviews
               </a>
@@ -72,12 +75,12 @@ export default async function Page({ params }: { params: Promise<Params> }) {
                 <HiStar className="size-5 text-white/50" />
               </div>
               <span>4.4/5</span>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* <OtherFragrances currentFragranceUid={uid} /> */}
+      <OtherFragrances currentFragranceUid={uid} />
     </Bounded>
   );
 }
@@ -90,9 +93,10 @@ export async function generateMetadata({
   const { uid } = await params;
   const client = createClient();
   const page = await client.getByUID("fragrance", uid).catch(() => notFound());
+  const settings = await client.getSingle("setting");
 
   return {
-    title: asText(page.data.title) + " | Côte Royale",
+    title: asText(page.data.title) + " | " + settings.data.site_title,
     description: `Discover ${asText(page.data.title)}, the newest fragrance from Côte Royale Paris.`,
     openGraph: {
       images: [{ url: asImageSrc(page.data.meta_image) ?? "" }],
